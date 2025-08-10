@@ -1,0 +1,23 @@
+spring:
+  application:
+  name: spring-vault-integration-app
+  #datasource:
+    #url: jdbc:mysql://localhost:3306/mysql-docker
+    #username: root
+    #password: ${password:root}  # default password for MySQL root user
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+     hibernate:
+        ddl-auto: update   # update schema automatically
+     show-sql: true       # log SQL queries
+     database-platform: org.hibernate.dialect.MySQLDialect
+     properties:
+       hibernate:
+         format_sql: true
+  cloud:
+    vault:
+      authentication: TOKEN
+      token: root
+      uri: ${VAULT_URI:http://localhost:8200}
+      kv:
+        enabled: true
